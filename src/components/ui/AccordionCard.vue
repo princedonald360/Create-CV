@@ -11,8 +11,11 @@ defineEmits(['toggle', 'remove', 'move'])
 </script>
 
 <template>
-  <div class="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-    <div class="flex items-center gap-1 bg-slate-50 pr-2 transition hover:bg-slate-100">
+  <div
+    class="overflow-hidden rounded-xl border border-[#c9d3ee] border-l-[5px] bg-white"
+    :style="{ borderLeftColor: 'var(--tone, #1d4ed8)' }"
+  >
+    <div class="flex items-center gap-1 bg-[var(--color-mist)] pr-2 transition hover:bg-[#e2eaff]">
       <button
         type="button"
         class="flex min-w-0 flex-1 select-none items-center gap-2 p-3 text-left"
@@ -59,7 +62,7 @@ defineEmits(['toggle', 'remove', 'move'])
       </button>
     </div>
 
-    <div v-show="open" class="space-y-3 border-t border-slate-200 bg-white p-4">
+    <div v-show="open" class="space-y-3 border-t border-[#c9d3ee] bg-white p-4">
       <slot />
     </div>
   </div>

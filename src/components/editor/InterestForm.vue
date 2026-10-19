@@ -21,7 +21,7 @@ const handleAdd = () => {
   <section>
     <h2 class="section-title">Centres d'intérêt &amp; loisirs</h2>
 
-    <div class="space-y-3 rounded-lg border border-slate-200 bg-slate-50 p-3" @keydown.enter.prevent="handleAdd">
+    <div class="space-y-3 rounded-xl border border-[#c9d3ee] bg-[var(--color-mist)] p-3" @keydown.enter.prevent="handleAdd">
       <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
         <FormField
           v-model="name"
@@ -39,7 +39,7 @@ const handleAdd = () => {
 
       <button
         type="button"
-        class="w-full rounded-lg bg-slate-800 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-slate-900 disabled:cursor-not-allowed disabled:bg-slate-300"
+        class="btn-primary w-full"
         :disabled="!name.trim() || store.interests.length >= LIMITS.maxItems"
         @click="handleAdd"
       >
@@ -51,7 +51,7 @@ const handleAdd = () => {
       <li
         v-for="item in store.interests"
         :key="item.id"
-        class="inline-flex max-w-full items-center gap-2 rounded-md border border-slate-200 bg-white px-2.5 py-1.5 text-xs shadow-sm"
+        class="chip gap-2"
       >
         <span class="min-w-0 truncate">
           <span class="font-bold text-slate-800">{{ item.name }}</span>

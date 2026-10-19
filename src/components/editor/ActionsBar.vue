@@ -89,12 +89,12 @@ onBeforeUnmount(() => clearTimeout(statusTimer))
     />
 
     <div class="flex flex-wrap gap-2">
-      <button type="button" class="btn-primary" @click="printCv">Télécharger en PDF</button>
+      <button type="button" class="btn-accent" @click="printCv">Télécharger en PDF</button>
       <button type="button" class="btn-secondary" @click="exportJson">Sauvegarder (JSON)</button>
       <button type="button" class="btn-secondary" @click="openImport">Importer</button>
       <button
         type="button"
-        class="btn-secondary border-red-200 text-red-600 hover:bg-red-50"
+        class="btn-secondary text-red-600 hover:bg-red-50"
         @click="resetAll"
       >
         Réinitialiser

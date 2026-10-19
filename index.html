@@ -3,16 +3,96 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Référencement -->
+    <title>Éditeur de CV gratuit en ligne | Créez votre CV en PDF</title>
     <meta
       name="description"
-      content="Créez votre CV professionnel en ligne : aperçu en temps réel, export PDF. Vos données restent sur votre appareil."
+      content="Créez un CV professionnel en quelques minutes : aperçu en direct, couleurs, photo, export PDF. Gratuit, sans inscription, données sur votre appareil."
     />
-    <meta name="theme-color" content="#2563eb" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://editeurdecv.netlify.app/" />
+
+    <!-- Aperçu de lien (WhatsApp, Facebook, LinkedIn, Telegram, iMessage…) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Éditeur de CV" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://editeurdecv.netlify.app/" />
+    <meta property="og:title" content="Éditeur de CV gratuit en ligne" />
+    <meta
+      property="og:description"
+      content="Créez votre CV avec un aperçu en direct et téléchargez-le en PDF. Gratuit, sans inscription."
+    />
+    <meta property="og:image" content="https://editeurdecv.netlify.app/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Éditeur de CV : un CV avec photo à côté du texte « Créez votre CV en ligne, gratuit et sans inscription »"
+    />
+
+    <!-- Aperçu sur X (Twitter) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Éditeur de CV gratuit en ligne" />
+    <meta
+      name="twitter:description"
+      content="Créez votre CV avec un aperçu en direct et téléchargez-le en PDF. Gratuit, sans inscription."
+    />
+    <meta name="twitter:image" content="https://editeurdecv.netlify.app/og-image.png" />
+
+    <!-- Apparence sur mobile et icônes -->
+    <meta name="theme-color" content="#1d4ed8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Éditeur de CV</title>
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Données structurées : aident Google à comprendre qu'il s'agit d'une application -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Éditeur de CV",
+        "url": "https://editeurdecv.netlify.app/",
+        "description": "Éditeur de CV en ligne gratuit avec aperçu en direct et export PDF. Les données restent sur l'appareil de l'utilisateur.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Tous (navigateur web)",
+        "inLanguage": "fr",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" }
+      }
+    </script>
   </head>
   <body>
-    <div id="app"></div>
+    <!--
+      Le contenu de #app est remplacé par l'application dès que JavaScript est chargé.
+      Il sert d'écran de chargement et de texte lisible pour les robots des moteurs de recherche.
+    -->
+    <div id="app">
+      <main
+        style="
+          max-width: 34rem;
+          margin: 0 auto;
+          padding: 3rem 1.5rem;
+          font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+          color: #172554;
+        "
+      >
+        <h1 style="font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin: 0 0 0.75rem">
+          Éditeur de CV gratuit en ligne
+        </h1>
+        <p style="line-height: 1.6; margin: 0 0 1rem">
+          Créez un CV professionnel en quelques minutes : remplissez vos informations, votre CV se met à
+          jour en direct, puis téléchargez-le en PDF.
+        </p>
+        <ul style="line-height: 1.8; padding-left: 1.25rem; margin: 0 0 1rem">
+          <li>Aperçu en temps réel au format A4</li>
+          <li>Photo de profil avec recadrage, couleurs personnalisables</li>
+          <li>Expériences, formations, compétences, langues, projets, certifications</li>
+          <li>Gratuit, sans inscription : vos données restent sur votre appareil</li>
+        </ul>
+        <p style="color: #475569">Chargement de l'éditeur…</p>
+      </main>
+    </div>
     <noscript>Cette application nécessite JavaScript pour fonctionner.</noscript>
     <script type="module" src="/src/main.js"></script>
   </body>

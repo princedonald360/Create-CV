@@ -35,20 +35,22 @@ const scale = usePreviewScale(previewRef)
 
 <template>
   <div
-    class="flex min-h-screen flex-col bg-slate-100 font-sans md:h-screen md:flex-row md:overflow-hidden print:block print:h-auto print:min-h-0 print:overflow-visible print:bg-white"
+    class="flex min-h-screen flex-col bg-[var(--color-mist)] font-sans md:h-screen md:flex-row md:overflow-hidden print:block print:h-auto print:min-h-0 print:overflow-visible print:bg-white"
   >
     <!-- Onglets mobile -->
     <nav
-      class="sticky top-0 z-20 flex border-b border-slate-200 bg-white md:hidden print:hidden"
+      class="sticky top-0 z-20 flex gap-2 border-b border-[#c9d3ee] bg-white p-2 md:hidden print:hidden"
       aria-label="Éditeur ou aperçu"
     >
       <button
         v-for="tab in tabs"
         :key="tab.id"
         type="button"
-        class="flex-1 py-3 text-sm font-semibold transition"
+        class="flex-1 rounded-full py-2 text-sm font-bold transition"
         :class="
-          view === tab.id ? 'border-b-2 border-blue-600 text-blue-600' : 'text-slate-500 hover:text-slate-700'
+          view === tab.id
+            ? 'bg-[var(--color-cobalt)] text-white'
+            : 'bg-[var(--color-mist)] text-[var(--color-ink)]'
         "
         :aria-current="view === tab.id ? 'page' : undefined"
         @click="view = tab.id"
@@ -59,62 +61,74 @@ const scale = usePreviewScale(previewRef)
 
     <!-- ============ PANNEAU ÉDITEUR (masqué à l'impression) ============ -->
     <aside
-      class="w-full overflow-y-auto bg-white shadow-xl md:block md:w-1/2 md:border-r md:border-slate-200 print:hidden"
+      class="editor-pane w-full overflow-y-auto md:block md:w-1/2 print:hidden"
       :class="view === 'edit' ? 'block' : 'hidden'"
     >
-      <div class="mx-auto max-w-xl space-y-8 p-6">
-        <header class="space-y-3 border-b border-slate-100 pb-5">
-          <div>
-            <h1 class="flex items-center gap-2 text-2xl font-black text-slate-800">
-              <span aria-hidden="true">⚡</span> Éditeur de CV
-            </h1>
-            <p class="mt-1 text-xs text-slate-500">
-              Remplissez vos informations : votre CV se met à jour en temps réel.
-            </p>
+      <div class="mx-auto max-w-xl space-y-5 p-4 sm:p-6">
+        <header class="hero">
+          <div class="relative z-10 flex items-center gap-3">
+            <span class="hero-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+                <path d="M14 3v5h5" />
+                <path d="M9 13h6M9 17h4" />
+              </svg>
+            </span>
+            <h1 class="hero-title">Éditeur de CV</h1>
           </div>
-          <ActionsBar />
+          <p class="hero-sub relative z-10">
+            Votre CV se met à jour en direct pendant que vous écrivez. Vos données restent sur votre
+            appareil.
+          </p>
         </header>
+
+        <!-- Actions : le jaune signale l'action principale -->
+        <div class="panel-card" style="--tone: #fbbf24">
+          <ActionsBar />
+        </div>
 
         <p
           v-if="store.storageError"
           role="alert"
-          class="rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-800"
+          class="rounded-xl border-2 border-amber-400 bg-amber-50 p-3 text-xs font-medium text-amber-900"
         >
           {{ store.storageError }}
         </p>
 
-        <StylePicker />
+        <div class="panel-card" style="--tone: #1d4ed8">
+          <StylePicker />
+        </div>
 
-        <div class="space-y-4 border-t border-slate-100 pt-6">
+        <div class="panel-card space-y-4" style="--tone: #f43f5e">
           <InfoProfile />
           <PhotoUpload />
         </div>
 
-        <div v-if="store.setting.showExperience" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showExperience" class="panel-card" style="--tone: #f59e0b">
           <ExperienceForm />
         </div>
 
-        <div v-if="store.setting.showEducation" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showEducation" class="panel-card" style="--tone: #10b981">
           <EducationForm />
         </div>
 
-        <div v-if="store.setting.showProjects" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showProjects" class="panel-card" style="--tone: #8b5cf6">
           <ProjectsForm />
         </div>
 
-        <div v-if="store.setting.showCertifications" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showCertifications" class="panel-card" style="--tone: #0891b2">
           <CertificationsForm />
         </div>
 
-        <div v-if="store.setting.showSkills" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showSkills" class="panel-card" style="--tone: #ec4899">
           <SkillsForm />
         </div>
 
-        <div v-if="store.setting.showLanguages" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showLanguages" class="panel-card" style="--tone: #0ea5e9">
           <LanguageForm />
         </div>
 
-        <div v-if="store.setting.showInterests" class="border-t border-slate-100 pt-6">
+        <div v-if="store.setting.showInterests" class="panel-card" style="--tone: #f97316">
           <InterestForm />
         </div>
       </div>
@@ -123,7 +137,7 @@ const scale = usePreviewScale(previewRef)
     <!-- ============ APERÇU TEMPS RÉEL / FEUILLE A4 ============ -->
     <main
       ref="previewRef"
-      class="w-full items-start justify-center overflow-y-auto bg-slate-300 p-4 md:flex md:w-1/2 md:p-6 print:block print:w-full print:overflow-visible print:bg-white print:p-0"
+      class="preview-pane w-full items-start justify-center overflow-y-auto p-4 md:flex md:w-1/2 md:p-6 print:block print:w-full print:overflow-visible print:p-0"
       :class="view === 'preview' ? 'flex' : 'hidden'"
     >
       <div class="cv-paper shadow-2xl" :style="{ zoom: scale }">

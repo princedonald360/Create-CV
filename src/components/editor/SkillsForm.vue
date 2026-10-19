@@ -46,7 +46,7 @@ const handleAddSkill = () => {
         <li
           v-for="(skill, index) in store.skills"
           :key="skill"
-          class="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700"
+          class="chip"
         >
           <span>{{ skill }}</span>
           <button
