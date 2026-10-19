@@ -1,4 +1,5 @@
 import { DEFAULT_COLOR, LICENSES, LIMITS } from './constants'
+import { DEFAULT_TEMPLATE, TEMPLATE_IDS } from './templates'
 
 /* ------------------------------------------------------------------ */
 /*  Valeurs par défaut                                                */
@@ -13,6 +14,7 @@ export const createId = () => {
 
 export const defaultSetting = () => ({
   primaryColor: DEFAULT_COLOR,
+  template: DEFAULT_TEMPLATE,
   showPhoto: true,
   showExperience: true,
   showEducation: true,
@@ -75,8 +77,10 @@ const normalizeSetting = (raw) => {
   if (!isObject(raw)) return base
   const out = { ...base }
   for (const key of Object.keys(base)) {
-    if (key !== 'primaryColor') out[key] = bool(raw[key], base[key])
+    if (key !== 'primaryColor' && key !== 'template') out[key] = bool(raw[key], base[key])
   }
+  // Un modèle inconnu (ancien brouillon, fichier modifié) retombe sur le modèle par défaut.
+  if (TEMPLATE_IDS.includes(raw.template)) out.template = raw.template
   if (typeof raw.primaryColor === 'string' && /^#[0-9a-f]{6}$/i.test(raw.primaryColor)) {
     out.primaryColor = raw.primaryColor
   }

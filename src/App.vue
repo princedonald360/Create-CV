@@ -17,7 +17,8 @@ import LanguageForm from './components/editor/LanguageForm.vue'
 import InterestForm from './components/editor/InterestForm.vue'
 
 // Aperçu
-import ModernTemplate from './components/templates/ModernTemplate.vue'
+import CvTemplate from './components/templates/CvTemplate.vue'
+import TemplatePicker from './components/editor/TemplatePicker.vue'
 
 const store = useCvStore()
 
@@ -137,12 +138,16 @@ const scale = usePreviewScale(previewRef)
     <!-- ============ APERÇU TEMPS RÉEL / FEUILLE A4 ============ -->
     <main
       ref="previewRef"
-      class="preview-pane w-full items-start justify-center overflow-y-auto p-4 md:flex md:w-1/2 md:p-6 print:block print:w-full print:overflow-visible print:p-0"
+      class="preview-pane w-full flex-col items-center gap-4 overflow-y-auto p-4 md:flex md:w-1/2 md:p-6 print:block print:w-full print:overflow-visible print:p-0"
       :class="view === 'preview' ? 'flex' : 'hidden'"
     >
-      <div class="cv-paper shadow-2xl" :style="{ zoom: scale }">
-        <ModernTemplate />
+      <!-- Bouton de choix du modèle (jamais imprimé) -->
+      <div class="sticky top-0 z-10 print:hidden">
+        <TemplatePicker />
       </div>
+
+      <!-- La feuille A4 : CvTemplate est lui-même la feuille (fond, marges, colonnes) -->
+      <CvTemplate class="shadow-2xl" :style="{ zoom: scale }" />
     </main>
   </div>
 </template>

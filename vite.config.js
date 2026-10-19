@@ -7,6 +7,8 @@ export default defineConfig({
   build: {
     target: 'es2020',
     sourcemap: false,
+    // Aucun fichier (police, image) n'est intégré en « data: » : compatible avec la règle de sécurité.
+    assetsInlineLimit: 0,
   },
   test: {
     environment: 'jsdom',

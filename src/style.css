@@ -308,10 +308,12 @@
 /* ---------------------------------------------------------------- */
 /*  Feuille A4                                                      */
 /* ---------------------------------------------------------------- */
+/* --pad-x est défini par le modèle : 0 quand une colonne colorée touche le bord de la feuille */
 .cv-paper {
+  position: relative;
   width: 210mm;
   min-height: 297mm;
-  padding: 12mm 14mm;
+  padding: 12mm var(--pad-x, 14mm);
   background: #ffffff;
 }
 
@@ -345,9 +347,9 @@
   .cv-paper {
     zoom: 1 !important;
     width: auto;
-    min-height: 0;
+    min-height: 296mm; /* la colonne colorée descend jusqu'en bas de la page */
     margin: 0;
-    padding: 0 14mm;
+    padding: 0 var(--pad-x, 14mm);
     box-shadow: none !important;
   }
 
