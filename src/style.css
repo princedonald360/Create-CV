@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+/* Classes réutilisables par tous les formulaires : un seul endroit à modifier. */
+@layer components {
+  .section-title {
+    @apply mb-3 text-sm font-bold uppercase tracking-wider text-slate-400;
+  }
+
+  .field-label {
+    @apply mb-1 block text-xs font-semibold text-slate-600;
+  }
+
+  .field-input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-slate-800 transition placeholder:text-slate-400 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/40 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:text-slate-400;
+  }
+
+  .btn-add {
+    @apply flex w-full items-center justify-center gap-1 rounded-lg border border-dashed border-blue-300 bg-blue-50 px-4 py-2.5 text-xs font-bold text-blue-600 transition hover:bg-blue-100 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg bg-blue-600 px-3 py-2 text-xs font-bold text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:bg-slate-300;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50;
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/*  Feuille A4                                                      */
+/* ---------------------------------------------------------------- */
+.cv-paper {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 12mm 14mm;
+  background: #ffffff;
+}
+
+/* Entretoises répétées en haut et en bas de chaque page à l'impression
+   (thead / tfoot du gabarit) : elles créent des marges sur toutes les pages,
+   tout en gardant @page { margin: 0 } qui supprime l'en-tête/pied de page du navigateur. */
+.cv-spacer {
+  height: 0;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 0;
+}
+
+@media print {
+  html,
+  body {
+    height: auto !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .cv-paper {
+    zoom: 1 !important;
+    width: auto;
+    min-height: 0;
+    margin: 0;
+    padding: 0 14mm;
+    box-shadow: none !important;
+  }
+
+  .cv-spacer {
+    height: 12mm;
+  }
+}
